@@ -262,6 +262,11 @@ STATICFILES_FINDERS += (
 
 # Specifie path to components root (you need to use absolute path)
 BOWER_COMPONENTS_ROOT = normpath(join(SITE_ROOT, '_bower_components'))
+
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'bootstrap',
+)
 ########## END BOWER CONFIGURATION
 
 
@@ -269,7 +274,6 @@ BOWER_COMPONENTS_ROOT = normpath(join(SITE_ROOT, '_bower_components'))
 # See: http://django-bootstrap3.readthedocs.org/en/latest/
 INSTALLED_APPS += (
     'jquery',
-    'bootstrap3',
 )
 
 ########## END BOOTSTRAP3 CONFIGURATION
