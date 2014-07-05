@@ -1,3 +1,7 @@
+# Static files
+_assets/
+_bower_components/
+
 # Python bytecode:
 *.py[co]
 
