@@ -167,7 +167,6 @@ MIDDLEWARE_CLASSES = (
 )
 ########## END MIDDLEWARE CONFIGURATION
 
-
 ########## URL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
 ROOT_URLCONF = '%s.urls' % SITE_NAME
@@ -192,17 +191,12 @@ DJANGO_APPS = (
     # 'django.contrib.admindocs',
 )
 
-THIRD_PARTY_APPS = (
-    'djangobower',
-    'bootstrap3',
-)
-
 # Apps specific for this project go here.
 LOCAL_APPS = (
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 ########## END APP CONFIGURATION
 
 
@@ -254,3 +248,28 @@ INSTALLED_APPS += (
 # Don't need to use South when setting up a test database.
 SOUTH_TESTS_MIGRATE = False
 ########## END SOUTH CONFIGURATION
+
+
+########## BOWER CONFIGURATION
+# See: https://django-bower.readthedocs.org/en/latest/
+INSTALLED_APPS += (
+    'djangobower',
+)
+
+STATICFILES_FINDERS += (
+    'djangobower.finders.BowerFinder',
+)
+
+# Specifie path to components root (you need to use absolute path)
+BOWER_COMPONENTS_ROOT = normpath(join(SITE_ROOT, '_bower_components'))
+########## END BOWER CONFIGURATION
+
+
+########## BOOTSTRAP3 CONFIGURATION
+# See: http://django-bootstrap3.readthedocs.org/en/latest/
+INSTALLED_APPS += (
+    'jquery',
+    'bootstrap3',
+)
+
+########## END BOOTSTRAP3 CONFIGURATION
