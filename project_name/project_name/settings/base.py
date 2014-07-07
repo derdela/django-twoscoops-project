@@ -1,8 +1,16 @@
 """Common settings and globals."""
 
-
+from os import environ
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
+
+def get_env_setting(setting):
+    """ Get the environment setting or return exception """
+    try:
+        return environ[setting]
+    except KeyError:
+        error_msg = "Set the %s env variable" % setting
+        raise ImproperlyConfigured(error_msg)
 
 
 ########## PATH CONFIGURATION
@@ -46,11 +54,11 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'NAME': get_env_setting('DJANGO_DB_NAME'),
+        'USER': get_env_setting('DJANGO_DB_USER'),
+        'PASSWORD': get_env_setting('DJANGO_DB_PASSWORD'),
+        'HOST': get_env_setting('DJANGO_DB_HOST'),
+        'PORT': get_env_setting('DJANGO_DB_PORT'),
     }
 }
 ########## END DATABASE CONFIGURATION
@@ -237,6 +245,12 @@ LOGGING = {
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 ########## END WSGI CONFIGURATION
+
+
+########## SECRET CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+SECRET_KEY = get_env_setting('SECRET_KEY')
+########## END SECRET CONFIGURATION
 
 
 ########## SOUTH CONFIGURATION
