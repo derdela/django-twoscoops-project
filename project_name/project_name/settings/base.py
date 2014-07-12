@@ -273,7 +273,7 @@ BOWER_INSTALLED_APPS = (
 ########## BOOTSTRAP3 CONFIGURATION
 # See: http://django-bootstrap3.readthedocs.org/en/latest/
 INSTALLED_APPS += (
-    'jquery',
+    'bootstrap3',
 )
 
 ########## END BOOTSTRAP3 CONFIGURATION
