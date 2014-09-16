@@ -1,8 +1,16 @@
 """Common settings and globals."""
 
-
+from os import environ
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
+
+def get_env_setting(setting):
+    """ Get the environment setting or return exception """
+    try:
+        return environ[setting]
+    except KeyError:
+        error_msg = "Set the %s env variable" % setting
+        raise ImproperlyConfigured(error_msg)
 
 
 # PATH CONFIGURATION
@@ -50,12 +58,21 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     'default': {
+<<<<<<< HEAD
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'database.sqlite3',
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
+=======
+        'ENGINE': 'django.db.backends.',
+        'NAME': get_env_setting('DJANGO_DB_NAME'),
+        'USER': get_env_setting('DJANGO_DB_USER'),
+        'PASSWORD': get_env_setting('DJANGO_DB_PASSWORD'),
+        'HOST': get_env_setting('DJANGO_DB_HOST'),
+        'PORT': get_env_setting('DJANGO_DB_PORT'),
+>>>>>>> 33e5e7a5f142bf5e667a93949813f5fab2371950
     }
 }
 # END DATABASE CONFIGURATION
@@ -241,7 +258,28 @@ LOGGING = {
 # WSGI CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
+<<<<<<< HEAD
 # END WSGI CONFIGURATION
+=======
+########## END WSGI CONFIGURATION
+
+
+########## SECRET CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+SECRET_KEY = get_env_setting('SECRET_KEY')
+########## END SECRET CONFIGURATION
+
+
+########## SOUTH CONFIGURATION
+# See: http://south.readthedocs.org/en/latest/installation.html#configuring-your-django-installation
+INSTALLED_APPS += (
+    # Database migration helpers:
+    'south',
+)
+# Don't need to use South when setting up a test database.
+SOUTH_TESTS_MIGRATE = False
+########## END SOUTH CONFIGURATION
+>>>>>>> 33e5e7a5f142bf5e667a93949813f5fab2371950
 
 
 # BOWER CONFIGURATION
@@ -261,4 +299,17 @@ BOWER_INSTALLED_APPS = (
     'jquery',
     'bootstrap',
 )
+<<<<<<< HEAD
 # END BOWER CONFIGURATION
+=======
+########## END BOWER CONFIGURATION
+
+
+########## BOOTSTRAP3 CONFIGURATION
+# See: http://django-bootstrap3.readthedocs.org/en/latest/
+INSTALLED_APPS += (
+    'bootstrap3',
+)
+
+########## END BOOTSTRAP3 CONFIGURATION
+>>>>>>> 33e5e7a5f142bf5e667a93949813f5fab2371950
