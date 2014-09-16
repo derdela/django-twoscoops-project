@@ -22,18 +22,6 @@ You have several options in setting up your working environment.  We recommend
 using virtualenv to separate the dependencies of your project from your system's
 python environment.  If on Linux or Mac OS X, you can also use virtualenvwrapper to help manage multiple virtualenvs across different projects.
 
-Virtualenv Only
----------------
-
-First, make sure you are using virtualenv (http://www.virtualenv.org). Once
-that's installed, create your virtualenv::
-
-    $ virtualenv icecream
-
-You will also need to ensure that the virtualenv has the project directory
-added to the path. Adding the project directory will allow `django-admin.py` to
-be able to change settings using the `--settings` flag.
-
 Virtualenv with virtualenvwrapper
 ------------------------------------
 
@@ -69,10 +57,6 @@ To create a new Django project called '**icecream**' using
 django-twoscoops-project, run the following command::
 
     $ django-admin.py startproject --template=https://github.com/derdela/django-twoscoops-project/archive/master.zip --extension=py,rst,html icecream_project
-
-For Django 1.5 users, we recommend::
-
-    $ django-admin.py startproject --template=https://github.com/derdela/django-twoscoops-project/archive/1.5.zip --extension=py,rst,html icecream_project
 
 Installation of Dependencies
 =============================
